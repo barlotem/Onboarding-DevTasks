@@ -1,9 +1,9 @@
 const fs = require('fs');
-fs.readFile('input.js', 'utf8', function (err, data) {
-  if (err) throw err;
-  let objData = JSON.parse(data);
-
+try {
+  let objData = JSON.parse(fs.readFileSync('data.json'));
   objData.forEach(element => {
     console.log(`App: ${element.name}, Users: ${element.users.length}`);
-  }); 
-});
+  });
+} catch (error) {
+  console.error('There was an error while reading from file', error)
+}

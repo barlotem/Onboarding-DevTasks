@@ -29,16 +29,16 @@ const init = async () => {
     },{
         method: 'POST',
         path: '/apps',
-        handler: (request, h) => {
-            return { "numberOfApps": request.payload.apps.length};
-        },
         options: {
             validate: {
                 payload: Joi.object({
                     apps: Joi.array().items(Joi.number())
                 })
             }
-        }
+        },
+        handler: (request, h) => {
+            return { "numberOfApps": request.payload.apps.length};
+        }        
     }]);
 
     await server.start();
