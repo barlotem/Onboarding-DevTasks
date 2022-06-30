@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
-import Task from './task';
+import { Component } from 'react';
+import Task from '../task/Task';
+import './taskList.css';
 
 class TaskList extends Component {
 	state = {
@@ -44,22 +45,24 @@ class TaskList extends Component {
 	renderTasks = () => {
 		if (this.state.tasks.length === 0) return <p>There are no tasks</p>;
 		return (
-			<div>
-				{this.state.tasks.map((task) => (
-					<Task
-						key={task.id}
-						task={task}
-						onDelete={this.handleDeleteTask}
-						onUpdateCompleteStatus={this.handleUpdateCompleteStatus}
-					/>
-				))}
-			</div>
+			<table>
+				<tbody>
+					{this.state.tasks.map((task) => (
+						<Task
+							key={task.id}
+							task={task}
+							onDelete={this.handleDeleteTask}
+							onUpdateCompleteStatus={this.handleUpdateCompleteStatus}
+						/>
+					))}
+				</tbody>
+			</table>
 		);
 	};
 
 	render() {
 		return (
-			<div className='row text-center'>
+			<div className='container row text-center'>
 				<div className='m-4'>
 					<h1>My Todo list</h1>
 					<input
@@ -71,7 +74,6 @@ class TaskList extends Component {
 					<button onClick={this.addTask} className='btn btn-primary btn-sm'>
 						Add Todo
 					</button>
-					<div>{this.renderTasks()}</div>
 					<div>
 						Open Todos:{' '}
 						{
@@ -80,6 +82,7 @@ class TaskList extends Component {
 						}{' '}
 						(Total: {this.state.tasks.length}){' '}
 					</div>
+					<div className='todos'>{this.renderTasks()}</div>
 				</div>
 			</div>
 		);
