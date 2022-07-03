@@ -9,12 +9,7 @@ function Task(props) {
 				type='checkbox'
 				className='checkbox'
 				checked={props.task.isComplete}
-				onChange={(event) => {
-					const target = event.target;
-					const value =
-						target.type === 'checkbox' ? target.checked : target.value;
-					props.onUpdateCompleteStatus(value);
-				}}
+				onChange={() => props.onUpdateCompleteStatus()}
 			/>
 			<span className='description'>{props.task.description}</span>
 			<button

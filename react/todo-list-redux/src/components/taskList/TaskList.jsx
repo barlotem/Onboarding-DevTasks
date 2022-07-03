@@ -18,9 +18,9 @@ function TaskList(props) {
 						key={key}
 						task={tasks[key]}
 						onDelete={() => dispatch(deleteTask(key))}
-						onUpdateCompleteStatus={(value) => {
+						onUpdateCompleteStatus={() => {
 							let newTask = { ...tasks[key] };
-							newTask.isComplete = value;
+							newTask.isComplete = !newTask.isComplete;
 							dispatch(updateTask({ id: key, task: newTask }));
 						}}
 					/>
