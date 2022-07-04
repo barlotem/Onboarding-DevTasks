@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import Task from '../task/Task.jsx';
 import { css } from 'glamor';
 import { container, todos, noTasksAlert } from './taskList';
-import { deleteTask, addTask, updateTask } from './taskListSlice';
+import { deleteTask, addTask, updateTask } from '../../store/actions';
 
 function TaskList(props) {
-	const tasks = useSelector((state) => state.taskList.tasks);
 	const dispatch = useDispatch();
+	const tasks = useSelector((state) => state.tasks);
 	const [newTaskDescription, setNewTaskDescription] = useState('');
 
 	const renderTasks = () => {
@@ -23,7 +23,7 @@ function TaskList(props) {
 						onUpdateCompleteStatus={() => {
 							let newTask = { ...tasks[key] };
 							newTask.isComplete = !newTask.isComplete;
-							dispatch(updateTask({ id: key, task: newTask }));
+							dispatch(updateTask(key, newTask));
 						}}
 					/>
 				))}
