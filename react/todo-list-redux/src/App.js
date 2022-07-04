@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import TaskList from './components/taskList/TaskList';
+import TaskList from './components/taskList/TaskList.jsx';
 
 class App extends Component {
 	render() {

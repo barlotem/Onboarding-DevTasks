@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Task from '../task/Task';
-import './taskList.css';
+import Task from '../task/Task.jsx';
+import { css } from 'glamor';
+import { container, todos, noTasksAlert } from './taskList';
 import { deleteTask, addTask, updateTask } from './taskListSlice';
 
 function TaskList(props) {
@@ -10,7 +11,8 @@ function TaskList(props) {
 	const [newTaskDescription, setNewTaskDescription] = useState('');
 
 	const renderTasks = () => {
-		if (tasks.length === 0) return <p>There are no tasks</p>;
+		if (Object.keys(tasks).length === 0)
+			return <p {...css(noTasksAlert)}>There are no tasks</p>;
 		return (
 			<React.Fragment>
 				{Object.keys(tasks).map((key) => (
@@ -30,7 +32,7 @@ function TaskList(props) {
 	};
 
 	return (
-		<div className='container row text-center'>
+		<div {...css(container)} className='row text-center'>
 			<div className='m-4'>
 				<h1>My Todo list</h1>
 				<input
@@ -60,7 +62,7 @@ function TaskList(props) {
 					}{' '}
 					(Total: {Object.keys(tasks).length}){' '}
 				</div>
-				<div className='todos'>{renderTasks()}</div>
+				<div {...css(todos)}>{renderTasks()}</div>
 			</div>
 		</div>
 	);

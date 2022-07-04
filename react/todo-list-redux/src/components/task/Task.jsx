@@ -1,19 +1,22 @@
 import React from 'react';
-import './task.css';
+import './task.js';
+import { deleteButton, checkbox, description, flexRow } from './task';
+import { css } from 'glamor';
 
 function Task(props) {
 	return (
-		<div className='row m-2'>
+		<div {...css(flexRow)}>
 			<input
+				{...css(checkbox)}
 				name='isComplete'
 				type='checkbox'
-				className='checkbox'
 				checked={props.task.isComplete}
 				onChange={() => props.onUpdateCompleteStatus()}
 			/>
-			<span className='description'>{props.task.description}</span>
+			<span {...css(description)}>{props.task.description}</span>
 			<button
-				className='btn btn-danger btn-sm delete-button'
+				className='btn btn-danger btn-sm'
+				{...css(deleteButton)}
 				onClick={() => props.onDelete()}
 			>
 				Delete
