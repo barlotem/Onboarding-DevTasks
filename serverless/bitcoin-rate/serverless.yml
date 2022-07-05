@@ -1,0 +1,18 @@
+service: bitcoin-rate
+
+frameworkVersion: '3'
+
+plugins:
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+
+functions:
+  getBitcoinRate:
+    handler: handler.getBitcoinRate
+    events:
+      - httpApi:
+          method: get
+          path: /bitcoinRate
